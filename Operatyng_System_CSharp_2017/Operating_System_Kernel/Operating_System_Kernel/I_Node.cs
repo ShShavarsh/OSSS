@@ -10,9 +10,14 @@ namespace Operating_System_Kernel
     {
    
         File_Attributes attributes = new File_Attributes();
-        ulong[] Block_Adress = new ulong[8];//es zangvaci amen mi tarri mech grvaca pa suci mi hat mec kam poqr tiv vor@ 
-        //iranic nerkayacnuma fayli eterord bloki arajin bit@
-        I_Node__ ref_of_next_I_Node__;
+        int First_Block_Adress;
+        
+
+
+        //mer os um fayli chap@ kara lini maximum 2mb==2^21b
+        //mer os um blocki chap@ klini 2kb=2^11b
+
+        //mer hard diski i verchin bloki hascen tiva vor@ poqra int_max ic dra hamar zangvaci tim@ int a
 
     }
 }

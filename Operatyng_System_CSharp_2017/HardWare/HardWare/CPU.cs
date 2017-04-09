@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
+
 using System.Threading;
+
+
+
 
 namespace HardWare
 {
@@ -11,11 +14,16 @@ namespace HardWare
     {
        public  static void Main(string[] args)
         {
-           /* henc Cpu n miacav ..aysinqn sksav es 
-            * Main i katarum@,,petqa miangamic Timer in inicializacnenq
-           */
+            My_Timer timer = new My_Timer();
+            timer.timer.Start();
+            
+            
 
+            Console.ReadKey();
 
         }
+
+       
     }
+
 }

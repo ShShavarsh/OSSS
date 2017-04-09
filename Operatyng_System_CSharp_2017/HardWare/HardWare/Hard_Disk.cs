@@ -12,11 +12,11 @@ namespace HardWare
     class Hard_Disk
     {
 
-            
 
+        private FileStream Stream { set; get; }
             private string Path{set;get;}
 
-            private class EventArgs_:EventArgs
+            public class EventArgs_:EventArgs
             {
                 public bool Read_Bool {private set; get; }
 
@@ -69,8 +69,8 @@ namespace HardWare
 
             public Hard_Disk(string path = @"D:\HARD_DISK.txt")
             {
-       
-                FileStream Stream = new FileStream();
+
+                
 
                 this.Path = path;
                     try

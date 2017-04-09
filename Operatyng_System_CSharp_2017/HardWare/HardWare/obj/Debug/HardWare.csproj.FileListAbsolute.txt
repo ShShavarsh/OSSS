@@ -18,5 +18,7 @@ C:\Users\Shavarsh\Desktop\Operatyng_System_CSharp_2017\HardWare\HardWare\bin\Deb
 C:\Users\Shavarsh\Desktop\Operatyng_System_CSharp_2017\HardWare\HardWare\obj\Debug\HardWare.exe
 C:\Users\Shavarsh\Desktop\Operatyng_System_CSharp_2017\HardWare\HardWare\obj\Debug\HardWare.pdb
 C:\Users\USER\Desktop\Ընթացիկ\SHAV\GitHub_Clone\OSSS\Operatyng_System_CSharp_2017\Hardware\HardWare\bin\Debug\HardWare.exe.config
+C:\Users\USER\Desktop\Ընթացիկ\SHAV\GitHub_Clone\OSSS\Operatyng_System_CSharp_2017\Hardware\HardWare\bin\Debug\HardWare.exe
+C:\Users\USER\Desktop\Ընթացիկ\SHAV\GitHub_Clone\OSSS\Operatyng_System_CSharp_2017\Hardware\HardWare\bin\Debug\HardWare.pdb
 C:\Users\USER\Desktop\Ընթացիկ\SHAV\GitHub_Clone\OSSS\Operatyng_System_CSharp_2017\Hardware\HardWare\obj\Debug\HardWare.exe
 C:\Users\USER\Desktop\Ընթացիկ\SHAV\GitHub_Clone\OSSS\Operatyng_System_CSharp_2017\Hardware\HardWare\obj\Debug\HardWare.pdb

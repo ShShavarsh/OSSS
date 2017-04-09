@@ -17,15 +17,15 @@ namespace Operating_System_Kernel
 {
     class File_System
     {
-       public static Super_Block superblok = new Super_Block();//static ?
-       static Array_Of_I_Nodes I_Node_Table = new Array_Of_I_Nodes();//static ?
-       static Information_Of_Free_Blocks bitavaya_karta = new Information_Of_Free_Blocks();//static ?
-       static Root_Catalog root = new Root_Catalog();//static ?
+        Super_Block superblok = new Super_Block();
+        Array_Of_I_Nodes I_Node_Table = new Array_Of_I_Nodes();
+        Information_Of_Free_Blocks bitavaya_karta = new Information_Of_Free_Blocks();
 
 
         /*
          es classum piti linen liq@ metodnercreate file
          * create catalog u tenc nmanatip metodner 
+         * open
          */
     }
 }

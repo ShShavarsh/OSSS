@@ -9,7 +9,7 @@ namespace Operating_System_Kernel
     class Zapis_Of_File
     {   
             // name_of_file;
-        byte[] name = new byte[32];
+        short[] name = new short[16];
 
         int index_of_i_Node_;
 
