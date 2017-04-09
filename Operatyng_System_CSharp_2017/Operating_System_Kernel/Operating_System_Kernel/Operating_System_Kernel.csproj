@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Array_Of_I_Nodes.cs" />
-    <Compile Include="Catalog.cs" />
-    <Compile Include="File.cs" />
+    <Compile Include="Array_Of_I_Nodes_Address.cs" />
+    <Compile Include="Driver_Of_HD.cs" />
+    <Compile Include="Driver_Of_Keyboard.cs" />
+    <Compile Include="Driver_Of_Monitor.cs" />
     <Compile Include="File_Attributes.cs" />
     <Compile Include="Information_Of_Free_Blocks.cs" />
+    <Compile Include="Interface_Of_Drivers.cs" />
     <Compile Include="I_Node.cs" />
     <Compile Include="Memory_Manager.cs" />
     <Compile Include="Inter_Process_Comunication.cs" />

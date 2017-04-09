@@ -10,9 +10,15 @@ namespace Operating_System_Kernel
     {
    
         File_Attributes attributes = new File_Attributes();
-        int First_Block_Adress;
-        
 
+        int[] block_addres = new int[1013];
+
+        //i_node i chap@ vopshm hamarya 2 bloka anum
+
+        public I_Node(byte mode,byte protec=0,byte Hidd=0) 
+        {
+            attributes.set_attr(mode,protec,Hidd);
+        }
 
         //mer os um fayli chap@ kara lini maximum 2mb==2^21b
         //mer os um blocki chap@ klini 2kb=2^11b
