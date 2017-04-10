@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 
 
+
 namespace HardWare
 {
     class Hard_Disk
     {
 
 
-        private FileStream Stream { set; get; }
+            private FileStream Stream { set; get; }
+
             private string Path{set;get;}
 
             public class EventArgs_:EventArgs
@@ -27,14 +29,15 @@ namespace HardWare
                 Read_Bool=read;
                 Read_Count = count;
                 }
+
                 public override string ToString()
                 {
-
                     return String.Format("{0} Read_Bool = {1} Read_Count {2} ", base.ToString(), Read_Bool,Read_Count);
                 }
             }
 
             public event EventHandler<EventArgs_> read_;
+
             public event EventHandler<EventArgs_> write_;
 
             protected virtual void Event_Func_read(EventArgs_ e)
@@ -69,10 +72,8 @@ namespace HardWare
 
             public Hard_Disk(string path = @"D:\HARD_DISK.txt")
             {
-
-                
-
                 this.Path = path;
+
                     try
                     {
                         // Delete the file if it exists.
@@ -96,6 +97,7 @@ namespace HardWare
                 }
                 finally
                 {
+                   
                     Stream.Close();
                 }
             }

@@ -16,13 +16,16 @@ namespace HardWare
         {
             My_Timer timer = new My_Timer();
             timer.timer.Start();
-            
-            
+
+            timer.Add_Func_For_Elapsing(func);
 
             Console.ReadKey();
 
         }
-
+       static void func(object sender,EventArgs e)
+       {
+           Console.WriteLine("Grancvelem,,obrabotka em anum");
+       }
        
     }
 
