@@ -14,7 +14,7 @@ namespace HardWare
     {
        public  static void Main(string[] args)
         {
-            My_Timer timer = new My_Timer();
+            TIMER timer = new My_Timer();
             timer.timer.Start();
 
             timer.Add_Func_For_Elapsing(func);

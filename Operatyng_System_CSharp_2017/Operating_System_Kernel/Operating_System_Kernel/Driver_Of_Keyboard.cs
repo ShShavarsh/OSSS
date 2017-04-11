@@ -12,7 +12,7 @@ namespace Operating_System_Kernel
         {
             return 0;
         }
-        public int Interface_Of_Drivers.Output()
+         int Interface_Of_Drivers.Output()
         {
             //some code
             return 0;

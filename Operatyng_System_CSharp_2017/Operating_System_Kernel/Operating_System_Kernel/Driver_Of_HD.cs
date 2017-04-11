@@ -13,11 +13,6 @@ namespace Operating_System_Kernel
     {
 
 
-         public Driver_Of_HD()
-         {
-            // x.ev += handler_of_hard_Disk_Write;
-
-         }
 
         public class  HD_Write_EventArgs_:EventArgs
         {
@@ -54,19 +49,13 @@ namespace Operating_System_Kernel
         }
 
 
-        public void handler_of_hard_Disk_Write(object sender, EventArgs e)
+        public void handler_of_hard_Disk_Write(object sender,Hard_Disk.EventArgs_ e)
         { 
         //handlinga anum vopshm
             //some code
-
-            /*
-             vorpeszi es funkician karana obrabotka ani hard  diski write funkicayum trcrac event@,
-             * petqa vor es Driver_Of_HD obekt@ grancvi hard_disk obekti eventin
-             * harcerii depqum grel obshi chatum. :D 
-             * */
+            Driver_HD_EventArgs E = new Driver_HD_EventArgs(e.Read_Bool,e.Read_Count);
+            start_write(E);
         }
-
-
      }
 
 
@@ -89,7 +78,9 @@ namespace Operating_System_Kernel
             public HD_Read_EventArgs_(byte[] arr,int addr,int size)
             {
                 this.addr = addr;
+
                 this.arr = arr;
+
                 this.size = size;
             }
 
@@ -122,16 +113,12 @@ namespace Operating_System_Kernel
             return 0;
         }
 
-        public void handler_of_hard_Disk_Read(object sender, EventArgs e)
+        public void handler_of_hard_Disk_Read(object sender,Hard_Disk.EventArgs_ e)
         {
-            //handlinga anum vopshm
+            //handleing a anum vopshm
             //some code
-
-            /*
-             vorpeszi es funkician karana obrabotka ani hard  diski read funkicayum trcrac event@,
-             * petqa vor es Driver_Of_HD obekt@ grancvi hard_disk obekti eventin
-             * harcerii depqum grel obshi chatum. :D 
-             * */
+            Driver_HD_EventArgs E = new Driver_HD_EventArgs(e.Read_Bool, e.Read_Count);
+            start_write(E);
         }
        
 
@@ -144,7 +131,48 @@ namespace Operating_System_Kernel
     /// </summary>
     partial class Driver_Of_HD : Interface_Of_Drivers
     {
-        public int Interface_Of_Drivers.I_O_Ctl()
+        public class Driver_HD_EventArgs:EventArgs
+        {
+            public bool Result { private set; get; }
+
+            public int  Count_Byte { private set; get; }
+
+            public Driver_HD_EventArgs(bool result,int count)
+            {
+                Result = result;
+                Count_Byte = count;
+            }
+        }
+
+
+        public event EventHandler<Driver_HD_EventArgs> read_event;
+
+        protected virtual void start_read(Driver_HD_EventArgs e)
+        {
+            EventHandler<Driver_HD_EventArgs> temp = Volatile.Read(ref read_event);
+            if (temp != null)
+                temp(this, e);
+        }
+
+        public event EventHandler<Driver_HD_EventArgs> write_event;
+
+        protected virtual void start_write(Driver_HD_EventArgs e)
+        {
+            EventHandler<Driver_HD_EventArgs> temp = Volatile.Read(ref read_event);
+            if (temp != null)
+                temp(this, e);
+        }
+
+
+
+
+        public Driver_Of_HD(Hard_Disk hd)
+        {
+            hd.write_ += handler_of_hard_Disk_Write;
+            hd.read_ += handler_of_hard_Disk_Read;
+        }
+
+        int Interface_Of_Drivers.I_O_Ctl()
         {
             return 0;
         }

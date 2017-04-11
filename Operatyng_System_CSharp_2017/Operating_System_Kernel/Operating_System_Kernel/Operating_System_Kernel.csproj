@@ -47,17 +47,21 @@
     <Compile Include="Driver_Of_Keyboard.cs" />
     <Compile Include="Driver_Of_Monitor.cs" />
     <Compile Include="File_Attributes.cs" />
+    <Compile Include="Hard_Disk.cs" />
     <Compile Include="Information_Of_Free_Blocks.cs" />
     <Compile Include="Interface_Of_Drivers.cs" />
     <Compile Include="I_Node.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="Memory_Manager.cs" />
     <Compile Include="Inter_Process_Comunication.cs" />
+    <Compile Include="Monitor.cs" />
     <Compile Include="Process_Manager.cs" />
     <Compile Include="Interface_of_Sys_Calls.cs" />
     <Compile Include="Input_Output_Manager.cs" />
     <Compile Include="File_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Super_Block.cs" />
+    <Compile Include="TIMER.cs" />
     <Compile Include="Zapis_Of_File.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

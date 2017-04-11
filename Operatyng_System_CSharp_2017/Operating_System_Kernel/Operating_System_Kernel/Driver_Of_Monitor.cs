@@ -8,7 +8,7 @@ namespace Operating_System_Kernel
 {
     class Driver_Of_Monitor:Interface_Of_Drivers
     {
-        public int Interface_Of_Drivers.Input()
+        int Interface_Of_Drivers.Input()
         {
             return 0;
         }
