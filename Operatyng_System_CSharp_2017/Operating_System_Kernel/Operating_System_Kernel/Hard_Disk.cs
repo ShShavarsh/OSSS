@@ -6,62 +6,27 @@ using System.Threading;//Volatile
 
 namespace Operating_System_Kernel
 {
-    public class Hard_Disk
+    partial class Hard_Disk//dashter@,kanstruktornerer@,tiper@ es part um tox linen
     {
         private FileStream Stream { set; get; }
 
         private string Path { set; get; }
 
+
         public class EventArgs_ : EventArgs
         {
-            public   bool Read_Bool { private set; get; }
+            public bool Read_Bool { private set; get; }
 
-            public   int Read_Count { private set; get; }
+            public int Read_Count { private set; get; }
 
-            public EventArgs_(bool read, int count)
+            public byte[] Buf {private set; get; }
+
+            public EventArgs_(bool read, int count,byte[] buf)
             {
                 Read_Bool = read;
                 Read_Count = count;
+                Buf = buf;
             }
-
-            public override string ToString()
-            {
-                return String.Format("{0} Read_Bool = {1} Read_Count {2} ", base.ToString(), Read_Bool, Read_Count);
-            }
-        }
-
-        public event EventHandler<EventArgs_> read_;
-
-        public event EventHandler<EventArgs_> write_;
-
-        protected virtual void Event_Func_read(EventArgs_ e)
-        {
-            EventHandler<EventArgs_> temp = Volatile.Read(ref read_);
-            if (temp != null) temp(this, e);
-        }
-
-        protected virtual void Event_Func_write(EventArgs_ e)
-        {
-            EventHandler<EventArgs_> temp = Volatile.Read(ref write_);
-            if (temp != null) temp(this, e);
-        }
-
-        public void SimulateEvent_for_read(bool read, int count)
-        {
-            // Создать объект для хранения информации, которую нужно передать получателям уведомления
-            EventArgs_ e = new EventArgs_(read, count);
-            // Вызвать виртуальный метод, уведомляющий объект о событии Если ни один из производных типов не переопределяет этот метод,
-            // объект уведомит всех зарегистрированных получателей уведомления
-            Event_Func_read(e);
-        }
-
-        public void SimulateEvent_for_writeing(bool write, int count)
-        {
-            // Создать объект для хранения информации, которую нужно передать получателям уведомления
-            EventArgs_ e = new EventArgs_(write, count);
-            // Вызвать виртуальный метод, уведомляющий объект о событии Если ни один из производных типов не переопределяет этот метод,
-            // объект уведомит всех зарегистрированных получателей уведомления
-            Event_Func_write(e);
         }
 
         public Hard_Disk(string path = @"D:\HARD_DISK.txt")
@@ -84,21 +49,39 @@ namespace Operating_System_Kernel
                 Stream = File.Create(path);
             }//end try
 
-
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+
             finally
             {
-
                 Stream.Close();
             }
         }
+    }
 
 
+    partial class Hard_Disk//Read i het kapvac amen inch tox es masum linen
+    {
+        public event EventHandler<EventArgs_> reading_end;
 
-        public byte[] read(long addr, int size)
+        protected virtual void Event_Func_reading_end(EventArgs_ e)
+        {
+            EventHandler<EventArgs_> temp = Volatile.Read(ref reading_end);
+            if (temp != null) temp(this, e);
+        }
+
+        public void SimulateEvent_for_reading_end(bool read, int count, byte[] buf)
+        {
+            // Создать объект для хранения информации, которую нужно передать получателям уведомления
+            EventArgs_ e = new EventArgs_(read, count,buf);
+            // Вызвать виртуальный метод, уведомляющий объект о событии Если ни один из производных типов не переопределяет этот метод,
+            // объект уведомит всех зарегистрированных получателей уведомления
+            Event_Func_reading_end(e);
+        }
+
+        public void read(long addr, int size)
         {
             int count;
 
@@ -145,21 +128,26 @@ namespace Operating_System_Kernel
                 {
                     if (count != size)
                     {
-                        SimulateEvent_for_read(false, count);//evanta uxarkum vor vochbarehajoxa kardace prce,nor heto exceptiona qcum
+                        SimulateEvent_for_reading_end(false, count, vec);//evanta uxarkum vor vochbarehajoxa kardace prce,nor heto exceptiona qcum
                         throw new Exception("can't read from HD expected count of bytes");
                     }
                     else
-                        SimulateEvent_for_read(true, count);//eventa uxarkum vor barehajox kardacela prcela
+                        SimulateEvent_for_reading_end(true, count, vec);//eventa uxarkum vor barehajox kardacela prcela
                 }
                 catch (Exception ob)
                 {
                     Console.WriteLine(ob.Message);
                 }
             }
-            return vec;
+            
         }
+    }
 
 
+   
+
+    partial class Hard_Disk //Write i het kapvac ameninch es masuma pahvum
+    {
         //sra void utyun@ harci taka
         public void write(long addr, byte[] data)
         {
@@ -183,7 +171,47 @@ namespace Operating_System_Kernel
 
                 SimulateEvent_for_writeing(true, data.Length);
             }
+        }
+            public event EventHandler<EventArgs_> writeing_end;
+
+            protected virtual void Event_Func_writeing_end(EventArgs_ e)
+            {
+                EventHandler<EventArgs_> temp = Volatile.Read(ref writeing_end);
+                if (temp != null) temp(this, e);
+            }
+
+             public void SimulateEvent_for_writeing(bool write, int count)
+            {
+                // Создать объект для хранения информации, которую нужно передать получателям уведомления
+                EventArgs_ e = new EventArgs_(write, count,null);
+                // Вызвать виртуальный метод, уведомляющий объект о событии Если ни один из производных типов не переопределяет этот метод,
+                // объект уведомит всех зарегистрированных получателей уведомления
+                Event_Func_writeing_end(e);
+            }
 
         }
+
+
+    partial class Hard_Disk//handler ner@ tox es partt um linen
+    {
+
+        public void add_handler_in_hard_disk(Driver_Of_HD drv_hd)//es funkcianeri anunner@ voroshel@ nervaynacnox processsaaaa
+        {
+            drv_hd.Event_For_HD_Read += handler_of_read_from_driver;
+            drv_hd.Event_For_HD_Write += handler_of_write_from_driver;
+        }
+
+        public void handler_of_read_from_driver(object sender,Driver_Of_HD.HD_Read_EventArgs_ e)//esi driver ic ekac read eventi handlerna
+        {
+           read(e.qani_hat_karda,e.vortexic_sksac_karda);
+        }
+
+        public void handler_of_write_from_driver(object sender, Driver_Of_HD.HD_Write_EventArgs_ e)//esi driver ic ekac write eventi handlerna
+        {
+            write(e.offset,e.buf);
+        }
     }
+
+    
 }
+

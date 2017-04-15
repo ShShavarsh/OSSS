@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Runtime.CompilerServices;
 
 
@@ -14,7 +14,142 @@ using System.Runtime.CompilerServices;
 
 namespace Operating_System_Kernel
 {
-    class File_System
+    partial class File_System//EVENTARGS-ern ennnnnnnnnnn 
+    {
+
+        public class info_for_read_in_hard_diskEventArgs : EventArgs
+        {
+            public int Block_Address { private set; get; }
+            public int Offset { private set; get; }
+            public int Size { private set; get; }
+
+            public info_for_read_in_hard_diskEventArgs(int bl_addr, int offs,int size)
+            {
+                Block_Address = bl_addr;
+                Offset=offs;
+                Size = size;
+            }
+        }
+
+        public class info_for_write_in_hard_diskEventArgs : EventArgs
+        {
+            public int Block_Address{private set;get;}
+            public int Offset{private set;get;}
+            public byte[] Buffer{private set;get;}
+
+            public info_for_write_in_hard_diskEventArgs(int bl_addr,int offs,byte [] buf)
+            {
+                Block_Address = bl_addr;
+                Offset = offs;
+                Buffer = buf;
+            }
+        }
+
+        
+    }//end partial
+
+
+
+
+
+
+
+
+
+
+
+    partial class File_System//eventnern en file systemi voronq krakvum en hard diski driveri hamar
+    {
+
+        public event EventHandler<info_for_read_in_hard_diskEventArgs> event_for_read_from_HD;
+
+        protected virtual void event_func_for_read_from_HD(info_for_read_in_hard_diskEventArgs e)
+        {
+            EventHandler<info_for_read_in_hard_diskEventArgs> temp = Volatile.Read(ref event_for_read_from_HD);
+            if (temp != null)
+                temp(this,e);
+        }
+
+        void Simulate_event_for_read_in_HD(int bl_addr, int offs, int size)
+        {
+            info_for_read_in_hard_diskEventArgs e = new info_for_read_in_hard_diskEventArgs(bl_addr,offs,size);
+
+            event_func_for_read_from_HD(e);
+        }
+
+
+
+
+
+        public event EventHandler<info_for_write_in_hard_diskEventArgs> event_for_write_in_HD;
+
+        protected virtual void event_func_for_write_in_HD(info_for_write_in_hard_diskEventArgs e)
+        {
+            EventHandler<info_for_write_in_hard_diskEventArgs> temp = Volatile.Read(ref event_for_write_in_HD);
+
+            if (temp != null)
+                temp(this, e);
+        }
+
+        void Simulate_event_for_write_in_HD(int bl_addr, int offs, byte[] buf)
+        {
+            info_for_write_in_hard_diskEventArgs e = new info_for_write_in_hard_diskEventArgs(bl_addr,offs,buf);
+
+            event_func_for_write_in_HD(e);
+        }
+
+    }//end partial
+
+
+
+
+
+    partial class File_System//es masum klinen driver ic krakvac 2 eventneri handlerner@
+        //vorpeszi es erku handlerner@ karanan obrabotka anen  iranc hamapatasxan eventnr@ iranq petqa grancven eventi hamar
+        //grancum@ kanenq funkciayi mijocov,tes nerqev@
+    {
+        public void add_handlers_for_driver_events(Driver_Of_HD drv)
+        {
+            
+           drv.read_event += handler_of_event_from_driver_end_reading_event;
+           drv.write_event += handler_of_event_from_driver_end_writeing_event;
+        }
+
+
+        public void handler_of_event_from_driver_end_writeing_event(object sender,Driver_Of_HD.end_writeing_in_hard_diskEventArgs e)
+        { 
+        
+            /*uremn es funkciayum
+             * arden hasanelia
+             * te qani byte a grve
+             * diski vra u true te false a,
+             * aysinqn hajoxa avartve te che
+             * grelu process@
+             * */
+            bool t = e.bool_write;
+            int count = e.count_byte;
+            //@hn de inch vor petqa karas anes es info i het,,
+            //orinak event ov hanes verev ,,cherez interface_of_sys_calls,
+            //heto vopshm uzer space 
+        }
+
+        public void handler_of_event_from_driver_end_reading_event(object sender,Driver_Of_HD.end_reading_from_hard_diskEventArgs  e)
+        {
+
+            byte[] buffer = e.buf;
+            /*
+             * @hn arden file system um unes driveri eventi mijocov buffer@  vortex grvela hard diskic kardacvac informacian
+             * inch or petqa karas anes het@
+             */
+
+        }
+    }//handlerner@ grancinq event@ brnelu en erb krakvav :D 
+
+
+
+
+
+    partial class File_System
     {
         Super_Block superblok = new Super_Block();
         Information_Of_Free_Blocks bitavaya_karta = new Information_Of_Free_Blocks();

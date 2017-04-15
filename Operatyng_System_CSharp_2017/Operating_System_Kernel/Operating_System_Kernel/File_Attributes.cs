@@ -31,7 +31,7 @@ namespace Operating_System_Kernel
 
         byte Exe_Or_Not_Exe{set;get;}
 
-        public void set_attr(byte open_mode)//chem manm te es class@ inch interfeysa talis 
+        public void set_attr(byte open_mode,byte protec)//chem manm te es class@ inch interfeysa talis 
         { 
 
             switch(open_mode)

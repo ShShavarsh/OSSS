@@ -17,7 +17,7 @@ namespace Operating_System_Kernel
 
         public I_Node(byte mode,byte protec=0,byte Hidd=0) 
         {
-            attributes.set_attr(mode,protec,Hidd);
+            attributes.set_attr(mode);
         }
 
         //mer os um fayli chap@ kara lini maximum 2mb==2^21b
