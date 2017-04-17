@@ -63,7 +63,7 @@
     <Compile Include="Super_Block.cs" />
     <Compile Include="Table_Of_Descriptor.cs" />
     <Compile Include="TIMER.cs" />
-    <Compile Include="Zapis_Of_File.cs" />
+    <Compile Include="Record_Of_File.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

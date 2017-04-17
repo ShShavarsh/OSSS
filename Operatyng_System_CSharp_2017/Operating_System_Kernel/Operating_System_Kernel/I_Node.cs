@@ -16,7 +16,7 @@ namespace Operating_System_Kernel
 
         public int[] block_addres;
 
-        public Zapis_Of_File[] arr;
+        public Record_Of_File[] arr;
        
 
         public I_Node(byte Flag_File_Katalog) 
@@ -40,7 +40,7 @@ namespace Operating_System_Kernel
             else
             {
 
-                arr = new Zapis_Of_File[Array_Of_I_Nodes.count_of_frii_i_nods];
+                arr = new Record_Of_File[Array_Of_I_Nodes.count_of_frii_i_nods];
 
             }
            
