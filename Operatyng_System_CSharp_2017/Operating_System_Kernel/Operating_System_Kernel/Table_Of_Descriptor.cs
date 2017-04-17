@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Operating_System_Kernel
 {
-    class Array_Of_I_Nodes_Address
+    class Table_Of_Descriptor
     {
+        byte index_of_i_Node_ = new byte();
+        int offset;
+        short accses_mode;
+
     }
 }

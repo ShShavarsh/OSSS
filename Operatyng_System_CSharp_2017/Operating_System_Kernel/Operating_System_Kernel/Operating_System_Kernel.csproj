@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Array_Of_I_Nodes_Address.cs" />
+    <Compile Include="Array_Of_I_Nodes.cs" />
     <Compile Include="Driver_Of_HD.cs" />
     <Compile Include="Driver_Of_Keyboard.cs" />
     <Compile Include="Driver_Of_Monitor.cs" />
@@ -61,6 +61,7 @@
     <Compile Include="File_System.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Super_Block.cs" />
+    <Compile Include="Table_Of_Descriptor.cs" />
     <Compile Include="TIMER.cs" />
     <Compile Include="Zapis_Of_File.cs" />
   </ItemGroup>

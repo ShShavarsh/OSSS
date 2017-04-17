@@ -8,18 +8,46 @@ namespace Operating_System_Kernel
 {
     class I_Node
     {
-   
-        File_Attributes attributes = new File_Attributes();
 
-        int[] block_addres = new int[1013];
 
-        //i_node i chap@ vopshm hamarya 2 bloka anum
+        public static int count_of_block_addres = 1013;
 
-        public I_Node(byte mode,byte protec=0,byte Hidd=0) 
+        public File_Attributes attributes ;
+
+        public int[] block_addres;
+
+        public Zapis_Of_File[] arr;
+       
+
+        public I_Node(byte Flag_File_Katalog) 
         {
-            attributes.set_attr(mode);
+           
+            Array_Of_I_Nodes.count_of_frii_i_nods--;
+            attributes = new File_Attributes();
+
+
+            if (Flag_File_Katalog == 0)
+            {
+
+                block_addres = new int[count_of_block_addres];
+                for(int i=0;i< count_of_block_addres; i++)
+                {
+                    block_addres[i] = -1; 
+                }
+
+
+            }
+            else
+            {
+
+                arr = new Zapis_Of_File[Array_Of_I_Nodes.count_of_frii_i_nods];
+
+            }
+           
+
         }
 
+       
         //mer os um fayli chap@ kara lini maximum 2mb==2^21b
         //mer os um blocki chap@ klini 2kb=2^11b
 

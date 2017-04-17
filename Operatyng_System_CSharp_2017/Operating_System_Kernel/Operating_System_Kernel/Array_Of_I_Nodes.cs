@@ -8,8 +8,13 @@ namespace Operating_System_Kernel
 {
     class Array_Of_I_Nodes
     {
-        I_Node[] array_Of_I_Nodes = new I_Node[100];
-        //mer os um kara lini maximum 100 fayl
-        //
+
+        public static int count_of_frii_i_nods = Super_Block.s_inodes_count;
+
+        public byte[] Bayte_Map_For_I_Nods = new byte[Super_Block.s_inodes_count];
+
+        public I_Node[] Arr_I_Node = new I_Node[Super_Block.s_inodes_count];
+
+
     }
 }

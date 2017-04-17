@@ -27,7 +27,7 @@ namespace Operating_System_Kernel
             Event_Func_Write(e);
         }
 
-        public int Input(byte[] arr,int Addres_of_Block,short offset)//et input in piti kanchi faylayin hamakargi eventi abrabotchik@
+        public int Input(byte[] arr,int Addres_of_Block,short offset)//etninput in piti kanchi faylyin hamakargi eventi abrabotchik@
         {
             //offset @ en iskakan ofseti mnacordna eli......by Mesrop :D 
             Simulate_Event_Write_In_HD(arr, Addres_of_Block + offset);
@@ -192,11 +192,14 @@ partial class Driver_Of_HD : Interface_Of_Drivers//hard diski eventnerin obrabot
             e.Block_Address;
             e.Offset;
             e.Size;
+            
             //es info ov petqa kraki event  vor@ kbrni hard diski obrabotchik@
         }
 
         public void handler_of_eventsForWrite_frim_File_system(object sender,File_System.info_for_write_in_hard_diskEventArgs e)
         {
+            
+            
             e.Block_Address;
             e.Buffer;
             e.Offset;

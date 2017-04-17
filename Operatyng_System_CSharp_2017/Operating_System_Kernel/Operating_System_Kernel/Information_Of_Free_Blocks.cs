@@ -8,7 +8,7 @@ namespace Operating_System_Kernel
 {
     class Information_Of_Free_Blocks
     {
-        byte [] byte_cart=new byte[100*1024];
+        public byte [] byte_cart=new byte[100*1024];
         /*
          * sra amen mi tarri mech grvuma 0 kam 1 ..
          * ete ird blok@ hard diski zbaxvaca uremn i rd tarri tex@ 1 hakarak depqqum 0
